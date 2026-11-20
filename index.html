@@ -334,6 +334,13 @@
         </button>
 
         <!-- Wise-Style Book & Author Privacy Toggle -->
+        <!-- Live Google Drive & Sheet Cloud Sync Pill -->
+        <button type="button" onclick="syncAllCloudBackups(false)" id="topDriveSyncBtn" title="Sync all projects & pitches to Google Drive JSON + Google Sheet now"
+          class="px-2.5 sm:px-3 py-2 rounded-xl bg-pureWhite/10 hover:bg-pureWhite/20 border border-pureWhite/15 text-warmIvory text-xs font-medium transition flex items-center gap-1.5">
+          <i data-lucide="hard-drive" id="topDriveSyncIcon" class="w-3.5 h-3.5 text-sageGreen"></i>
+          <span class="hidden xl:inline" id="topDriveSyncLabel">Drive Cloud Ready</span>
+        </button>
+
         <button onclick="toggleIdentityPrivacy()" id="topBtnIdentityPrivacy" class="px-2.5 sm:px-3 py-2 rounded-xl bg-pureWhite/10 hover:bg-pureWhite/20 border border-pureWhite/15 text-warmIvory text-xs font-semibold transition flex items-center gap-1.5" title="Privacy Toggle: Hide or Show All Book Titles & Author Names (****)">
           <i data-lucide="eye" id="topIdentityEyeIcon" class="w-4 h-4 text-sageGreen"></i>
           <span class="hidden sm:inline" id="topIdentityEyeLabel">Books & Authors</span>
@@ -1484,14 +1491,47 @@
                   <span>Pull from Sheet</span>
                 </button>
               </div>
+              <!-- Google Drive Cloud JSON Backup & Cross-Device Auto-Sync -->
+              <div class="pt-3 border-t border-borderCream space-y-3">
+                <div class="flex items-center justify-between gap-2">
+                  <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-midnight flex items-center gap-1.5">
+                      <i data-lucide="hard-drive" class="w-3.5 h-3.5 text-mutedBrass"></i>
+                      <span>Google Drive Cloud Backup (Cross-Device)</span>
+                    </h4>
+                    <p class="text-[11px] text-slateDark mt-0.5">Stores <code>the_lectorem_studio_backup.json</code> in your Google Drive so every device stays in sync automatically.</p>
+                  </div>
+                  <label class="inline-flex items-center gap-1.5 cursor-pointer shrink-0 bg-warmIvory px-2.5 py-1.5 rounded-lg border border-borderCream">
+                    <input type="checkbox" id="autoDriveSyncToggle" onchange="toggleAutoDriveSync()" class="rounded border-borderCream text-mutedBrass focus:ring-mutedBrass">
+                    <span class="text-[11px] font-semibold text-midnight">Auto-Sync</span>
+                  </label>
+                </div>
+
+                <div class="flex flex-wrap gap-2.5">
+                  <button type="button" onclick="backupToGoogleDrive(false)" class="px-4 py-2.5 bg-midnight text-pureWhite text-xs font-medium rounded-xl hover:bg-espresso transition flex items-center gap-1.5 shadow-sm">
+                    <i data-lucide="cloud-upload" class="w-3.5 h-3.5 text-mutedBrass"></i>
+                    <span>Save Backup to Google Drive</span>
+                  </button>
+                  <button type="button" onclick="restoreFromGoogleDrive(false)" class="px-4 py-2.5 bg-sageGreen text-pureWhite text-xs font-medium rounded-xl hover:bg-sageGreen/90 transition flex items-center gap-1.5 shadow-sm">
+                    <i data-lucide="cloud-download" class="w-3.5 h-3.5"></i>
+                    <span>Restore from Google Drive</span>
+                  </button>
+                </div>
+
+                <div id="driveBackupStatusBox" class="text-[11px] text-slateDark bg-warmIvory/70 border border-borderCream rounded-xl px-3 py-2 flex items-center justify-between gap-2">
+                  <span id="driveBackupStatusText">Google Drive backup ready. Auto-sync saves changes automatically across devices.</span>
+                  <a id="driveBackupFileLink" href="#" target="_blank" rel="noopener" class="hidden text-mutedBrass font-semibold hover:underline shrink-0">Open in Drive &rarr;</a>
+                </div>
+              </div>
+
               <div class="pt-3 border-t border-borderCream flex flex-wrap items-center gap-3">
                 <button onclick="exportDatabaseJSON()" class="px-4 py-2.5 bg-warmIvory border border-borderCream text-midnight text-xs font-medium rounded-xl hover:bg-borderCream transition flex items-center gap-1.5">
                   <i data-lucide="download" class="w-3.5 h-3.5"></i>
-                  <span>Export JSON Backup</span>
+                  <span>Download Local JSON</span>
                 </button>
-                <button type="button" onclick="triggerImportJSON()" class="px-4 py-2.5 bg-midnight text-pureWhite text-xs font-medium rounded-xl hover:bg-espresso transition flex items-center gap-1.5 shadow-sm">
+                <button type="button" onclick="triggerImportJSON()" class="px-4 py-2.5 bg-warmIvory border border-borderCream text-midnight text-xs font-medium rounded-xl hover:bg-borderCream transition flex items-center gap-1.5">
                   <i data-lucide="upload" class="w-3.5 h-3.5 text-mutedBrass"></i>
-                  <span>Import JSON Backup</span>
+                  <span>Upload Local JSON</span>
                 </button>
                 <input type="file" id="importJsonInput" accept=".json,application/json" onchange="handleImportJSONFile(event)" class="hidden" />
               </div>
@@ -2013,7 +2053,7 @@
 
     const DEFAULT_PROJECTS = [];
 
-    const DEFAULT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzKj-LazHJt4vk0Bt-sx3ezCu9H3XJ2WiiwHKI5XsX04iW-pRr0xqPFgZVZHHJORw9N/exec';
+    const DEFAULT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwBcwIo55bOWfr8PHkDlTFCXF0AuNItmMdunio-s5X4V8m_uG8iE4njAcJ1IiRwJkwEmA/exec';
 
     // Comprehensive Scrollable List of All Major Book Genres
     const MAJOR_GENRES = [
@@ -2257,7 +2297,7 @@ Thank you for choosing The Lectorem. Your trust and understanding are appreciate
 
     window.addEventListener('DOMContentLoaded', () => {
       const currentUrl = (localStorage.getItem('lectorem_script_url') || '').trim();
-      if (!currentUrl || currentUrl.includes('AKfycbyPbcRjq8v3St6KeXIZ5YMF0Tu8JOKgd8vcVcMugSSJjrqXdJPddTOw54wbwlpuyT0V') || currentUrl.includes('54wpuyT0V')) {
+      if (!currentUrl || currentUrl.includes('AKfycbyPbcRjq8v3St6KeXIZ5YMF0Tu8JOKgd8vcVcMugSSJjrqXdJPddTOw54wbwlpuyT0V') || currentUrl.includes('AKfycbzKj-LazHJt4vk0Bt-sx3ezCu9H3XJ2WiiwHKI5XsX04iW-pRr0xqPFgZVZHHJORw9N')) {
         localStorage.setItem('lectorem_script_url', DEFAULT_SCRIPT_URL);
       }
       populateGenreDropdowns();
@@ -2323,19 +2363,28 @@ Thank you for choosing The Lectorem. Your trust and understanding are appreciate
       document.getElementById('adminApp').classList.remove('hidden');
       switchTab('dashboard');
 
-      // If browser localStorage is empty (e.g., new device), automatically fetch existing records from Google Sheet
-      if (projects.length === 0) {
-        const url = localStorage.getItem('lectorem_script_url') || DEFAULT_SCRIPT_URL;
+      const cb = document.getElementById('autoDriveSyncToggle');
+      if (cb) cb.checked = isAutoDriveSyncEnabled();
+
+      const restored = await restoreFromGoogleDrive(true);
+      if (!restored && projects.length === 0) {
+        const url = (localStorage.getItem('lectorem_script_url') || DEFAULT_SCRIPT_URL).trim();
         if (url) {
           try {
-            const res = await fetch(`${url}?action=getAll`);
+            const sep = url.includes('?') ? '&' : '?';
+            const res = await fetch(`${url}${sep}action=getAll&_ts=${Date.now()}`);
             const data = await res.json();
             if (data && Array.isArray(data.projects) && data.projects.length > 0) {
+              isRestoringFromCloud = true;
               projects = normalizeLoadedProjects(data.projects);
               persistProjects();
+              isRestoringFromCloud = false;
               switchTab(currentTab);
+              updateDriveSyncStatusUI(`Loaded ${projects.length} projects from Google Sheet`, 'ok');
             }
-          } catch (e) {}
+          } catch (e) {
+            isRestoringFromCloud = false;
+          }
         }
       }
     }
@@ -2457,9 +2506,40 @@ Thank you for choosing The Lectorem. Your trust and understanding are appreciate
       }
     }
 
+    let autoDriveSyncTimer = null;
+    let isRestoringFromCloud = false;
+
+    function isAutoDriveSyncEnabled() {
+      const saved = localStorage.getItem('lectorem_auto_drive_sync');
+      return saved === null ? true : saved === 'true';
+    }
+
+    function toggleAutoDriveSync() {
+      const cb = document.getElementById('autoDriveSyncToggle');
+      const enabled = cb ? cb.checked : true;
+      localStorage.setItem('lectorem_auto_drive_sync', enabled ? 'true' : 'false');
+      updateDriveSyncStatusUI(
+        enabled ? 'Auto-sync ON: Changes automatically back up to Google Drive & Sheet.' : 'Auto-sync OFF: Use manual backup buttons when needed.',
+        enabled ? 'ok' : 'idle'
+      );
+      if (enabled) {
+        scheduleAutoCloudBackup();
+      }
+    }
+
+    function scheduleAutoCloudBackup() {
+      if (isRestoringFromCloud || !isAutoDriveSyncEnabled()) return;
+      if (autoDriveSyncTimer) clearTimeout(autoDriveSyncTimer);
+      updateDriveSyncStatusUI('Pending cloud backup...', 'syncing');
+      autoDriveSyncTimer = setTimeout(() => {
+        syncAllCloudBackups(true);
+      }, 1500);
+    }
+
     function persistPitches() {
       localStorage.setItem('lectorem_pitches', JSON.stringify(pitches));
       updatePitchNavBadge();
+      scheduleAutoCloudBackup();
     }
 
     function persistProjects() {
@@ -2475,6 +2555,7 @@ Thank you for choosing The Lectorem. Your trust and understanding are appreciate
       });
       localStorage.setItem('lectorem_projects', JSON.stringify(projects));
       updatePitchNavBadge();
+      scheduleAutoCloudBackup();
     }
 
     function getSavedTermsDetails() {
@@ -4281,6 +4362,210 @@ The Lectorem & Books (@thelectoremandbooks)`;
         }
       };
       reader.readAsText(file);
+    }
+
+    // ==================== GOOGLE DRIVE CLOUD BACKUP & CROSS-DEVICE SYNC ====================
+    function updateDriveSyncStatusUI(message, state = 'ok', driveUrl = '') {
+      const boxText = document.getElementById('driveBackupStatusText');
+      if (boxText) boxText.textContent = message;
+
+      const linkEl = document.getElementById('driveBackupFileLink');
+      if (linkEl) {
+        if (driveUrl) {
+          linkEl.href = driveUrl;
+          linkEl.classList.remove('hidden');
+        } else if (localStorage.getItem('lectorem_drive_file_url')) {
+          linkEl.href = localStorage.getItem('lectorem_drive_file_url');
+          linkEl.classList.remove('hidden');
+        }
+      }
+
+      const topLabel = document.getElementById('topDriveSyncLabel');
+      const topIcon = document.getElementById('topDriveSyncIcon');
+      if (topLabel) {
+        if (state === 'syncing') topLabel.textContent = 'Syncing Drive...';
+        else if (state === 'error') topLabel.textContent = 'Drive Sync Issue';
+        else topLabel.textContent = 'Drive Synced';
+      }
+      if (topIcon) {
+        topIcon.classList.remove('text-sageGreen', 'text-mutedBrass', 'text-red-400', 'animate-pulse');
+        if (state === 'syncing') topIcon.classList.add('text-mutedBrass', 'animate-pulse');
+        else if (state === 'error') topIcon.classList.add('text-red-400');
+        else topIcon.classList.add('text-sageGreen');
+      }
+    }
+
+    function buildFullBackupPayload() {
+      return {
+        app: 'The Lectorem Project Studio',
+        version: 'v9-drive-sync',
+        updatedAt: new Date().toISOString(),
+        projects: projects,
+        pitches: pitches,
+        termsDetails: getSavedTermsDetails()
+      };
+    }
+
+    async function backupToGoogleDrive(silent = false) {
+      const url = (localStorage.getItem('lectorem_script_url') || DEFAULT_SCRIPT_URL).trim();
+      if (!url) {
+        if (!silent) alert('Please enter and save your Google Apps Script Web App URL first.');
+        return false;
+      }
+      updateDriveSyncStatusUI('Saving backup to Google Drive...', 'syncing');
+      try {
+        const backupObj = buildFullBackupPayload();
+        const res = await fetch(url, {
+          method: 'POST',
+          mode: 'cors',
+          redirect: 'follow',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            action: 'saveDriveBackup',
+            fileName: 'the_lectorem_studio_backup.json',
+            backup: backupObj
+          })
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const rawText = await res.text();
+        let data = {};
+        try { data = JSON.parse(rawText); } catch (_) {}
+
+        if (data && data.ok === false) {
+          throw new Error(data.error || 'Apps Script returned an error.');
+        }
+
+        const timeLabel = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const driveUrl = data.fileUrl || '';
+        if (driveUrl) localStorage.setItem('lectorem_drive_file_url', driveUrl);
+
+        updateDriveSyncStatusUI(
+          `Saved to Google Drive (${projects.length} projects, ${pitches.length} pitches) at ${timeLabel}`,
+          'ok',
+          driveUrl
+        );
+        if (!silent) {
+          alert(`Backup saved to Google Drive (the_lectorem_studio_backup.json)!\n\nProjects: ${projects.length}\nPitches: ${pitches.length}\n\nYou can now open this app on any phone, tablet, or computer and sign in or click "Restore from Google Drive" to access the exact same data.`);
+        }
+        return true;
+      } catch (err) {
+        updateDriveSyncStatusUI('Drive backup failed: ' + (err.message || 'Check Code.gs deployment'), 'error');
+        if (!silent) {
+          alert('Google Drive Backup Error: ' + (err.message || err) + '\n\nMake sure you updated Code.gs in Google Apps Script with the Drive backup handler and deployed a New Version.');
+        }
+        return false;
+      }
+    }
+
+    async function restoreFromGoogleDrive(silent = false) {
+      const url = (localStorage.getItem('lectorem_script_url') || DEFAULT_SCRIPT_URL).trim();
+      if (!url) {
+        if (!silent) alert('Please enter and save your Google Apps Script Web App URL first.');
+        return false;
+      }
+      updateDriveSyncStatusUI('Checking Google Drive backup...', 'syncing');
+      try {
+        const sep = url.includes('?') ? '&' : '?';
+        const res = await fetch(`${url}${sep}action=loadDriveBackup&_ts=${Date.now()}`, {
+          method: 'GET',
+          mode: 'cors',
+          redirect: 'follow'
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const rawText = await res.text();
+        let data;
+        try {
+          data = JSON.parse(rawText);
+        } catch (parseErr) {
+          throw new Error('Non-JSON response from Apps Script.');
+        }
+
+        if (!data || data.ok === false) {
+          throw new Error((data && data.error) || 'No Drive backup found yet.');
+        }
+
+        const backup = data.backup || data;
+        const incomingProjects = Array.isArray(backup.projects) ? backup.projects : [];
+        const incomingPitches = Array.isArray(backup.pitches) ? backup.pitches : null;
+
+        if (incomingProjects.length === 0 && (!incomingPitches || incomingPitches.length === 0)) {
+          updateDriveSyncStatusUI('Connected to Drive (no backup file saved yet)', 'ok');
+          if (!silent) alert('Connected to Google Drive, but no backup records were found yet. Click "Save Backup to Google Drive" first.');
+          return false;
+        }
+
+        isRestoringFromCloud = true;
+        projects = normalizeLoadedProjects(incomingProjects);
+        if (incomingPitches !== null) {
+          pitches = incomingPitches;
+          localStorage.setItem('lectorem_pitches', JSON.stringify(pitches));
+        }
+        if (backup.termsDetails && typeof backup.termsDetails === 'string') {
+          localStorage.setItem('lectorem_terms_details', backup.termsDetails);
+        }
+        localStorage.setItem('lectorem_projects', JSON.stringify(projects));
+        updatePitchNavBadge();
+        isRestoringFromCloud = false;
+
+        if (data.fileUrl) localStorage.setItem('lectorem_drive_file_url', data.fileUrl);
+        switchTab(currentTab);
+
+        const timeLabel = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        updateDriveSyncStatusUI(
+          `Synced from Google Drive (${projects.length} projects, ${pitches.length} pitches) at ${timeLabel}`,
+          'ok',
+          data.fileUrl || ''
+        );
+        if (!silent) {
+          alert(`Restored ${projects.length} projects and ${pitches.length} pitches from Google Drive!`);
+        }
+        return true;
+      } catch (err) {
+        isRestoringFromCloud = false;
+        updateDriveSyncStatusUI('Drive check skipped (' + (err.message || 'offline') + ')', 'error');
+        if (!silent) {
+          alert('Restore from Google Drive Error: ' + (err.message || err));
+        }
+        return false;
+      }
+    }
+
+    async function syncAllCloudBackups(silent = false) {
+      const okDrive = await backupToGoogleDrive(true);
+      const url = (localStorage.getItem('lectorem_script_url') || DEFAULT_SCRIPT_URL).trim();
+      if (url) {
+        try {
+          const payloadProjects = [...projects];
+          if (pitches.length > 0) {
+            payloadProjects.push({
+              id: '__LECTOREM_PITCHES_META__',
+              title: '__PITCHES_STORE__',
+              author: 'System',
+              publisher: '',
+              collabType: 'Publisher',
+              feeUSD: 0,
+              paymentStatus: 'N/A (ARC)',
+              status: 'Completed',
+              startDate: '',
+              deadline: '',
+              reviewSharedDate: '',
+              platforms: { _pitchesList: pitches },
+              publicNote: '',
+              internalNotes: ''
+            });
+          }
+          await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            redirect: 'follow',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ action: 'saveAll', projects: payloadProjects })
+          });
+        } catch (_) {}
+      }
+      if (!silent && okDrive) {
+        alert(`Synced ${projects.length} projects & ${pitches.length} pitches to Google Drive and Google Sheets!`);
+      }
     }
 
     // ==================== MODAL & CRUD ====================
