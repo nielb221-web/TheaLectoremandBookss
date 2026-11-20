@@ -2051,7 +2051,440 @@
       } catch (err) {}
     }
 
-    const DEFAULT_PROJECTS = [];
+    const DEFAULT_PROJECTS = [
+          {
+                "id": "lec-1795119072152",
+                "title": "The Paralegal Speaks",
+                "author": "Andy Becker",
+                "genre": "Courtroom / Legal Thriller",
+                "publisher": "Dartfrog Publishers",
+                "collabType": "Paid",
+                "feeUSD": 55,
+                "receivedUSD": 0,
+                "receivedINR": 4840,
+                "paymentStatus": "Pending",
+                "status": "Confirmed",
+                "startDate": "2026-11-17",
+                "deadline": "2026-12-18",
+                "reviewSharedDate": "",
+                "publicNote": "",
+                "internalNotes": "",
+                "platforms": {
+                      "instagram": true,
+                      "amazon": false,
+                      "wordpblog": true,
+                      "goodreads": true,
+                      "fable": false,
+                      "storygraph": true,
+                      "bn": false,
+                      "_paymentMeta": {
+                            "receivedUSD": 0,
+                            "receivedINR": 4840,
+                            "invoiceNumber": "INV-2026-101",
+                            "genre": "Courtroom / Legal Thriller",
+                            "paymentMethod": "PayPal"
+                      }
+                },
+                "invoiceNumber": "INV-2026-101",
+                "paymentMethod": "PayPal"
+          },
+          {
+                "id": "lec-1795118873852",
+                "title": "Not My Problem? #3",
+                "author": "Dennis Ackerman",
+                "genre": "Psychological Thriller",
+                "publisher": "",
+                "collabType": "Paid",
+                "feeUSD": 53,
+                "receivedUSD": 53,
+                "receivedINR": 4986,
+                "paymentStatus": "Paid",
+                "status": "Confirmed",
+                "startDate": "2026-12-10",
+                "deadline": "2026-12-31",
+                "reviewSharedDate": "",
+                "publicNote": "",
+                "internalNotes": "",
+                "platforms": {
+                      "instagram": true,
+                      "amazon": false,
+                      "wordpblog": true,
+                      "goodreads": true,
+                      "fable": false,
+                      "storygraph": true,
+                      "bn": false,
+                      "_paymentMeta": {
+                            "receivedUSD": 53,
+                            "receivedINR": 4986,
+                            "invoiceNumber": "",
+                            "genre": "Psychological Thriller",
+                            "paymentMethod": "PayPal"
+                      }
+                },
+                "invoiceNumber": "",
+                "paymentMethod": "PayPal"
+          },
+          {
+                "id": "lec-1795118807072",
+                "title": "Business as Unusual #2",
+                "author": "Dennis Ackerman",
+                "genre": "Psychological Thriller",
+                "publisher": "",
+                "collabType": "Paid",
+                "feeUSD": 53,
+                "receivedUSD": 53,
+                "receivedINR": 4986,
+                "paymentStatus": "Paid",
+                "status": "Confirmed",
+                "startDate": "2026-11-11",
+                "deadline": "2026-12-17",
+                "reviewSharedDate": "",
+                "publicNote": "",
+                "internalNotes": "",
+                "platforms": {
+                      "instagram": true,
+                      "amazon": false,
+                      "wordpblog": true,
+                      "goodreads": true,
+                      "fable": false,
+                      "storygraph": true,
+                      "bn": false,
+                      "_paymentMeta": {
+                            "receivedUSD": 53,
+                            "receivedINR": 4986,
+                            "invoiceNumber": "",
+                            "genre": "Psychological Thriller",
+                            "paymentMethod": "PayPal"
+                      }
+                },
+                "invoiceNumber": "",
+                "paymentMethod": "PayPal"
+          },
+          {
+                "id": "lec-1795118678312",
+                "title": "The Naked Leader #1",
+                "author": "Dennis Ackerman",
+                "genre": "Business, Finance & Leadership",
+                "publisher": "",
+                "collabType": "Paid",
+                "feeUSD": 53,
+                "receivedUSD": 57,
+                "receivedINR": 4986,
+                "paymentStatus": "Paid",
+                "status": "Confirmed",
+                "startDate": "2026-10-11",
+                "deadline": "2026-11-18",
+                "reviewSharedDate": "",
+                "publicNote": "",
+                "internalNotes": "",
+                "platforms": {
+                      "instagram": true,
+                      "amazon": false,
+                      "wordpblog": true,
+                      "goodreads": true,
+                      "fable": false,
+                      "storygraph": true,
+                      "bn": false,
+                      "_paymentMeta": {
+                            "receivedUSD": 57,
+                            "receivedINR": 4986,
+                            "invoiceNumber": "",
+                            "genre": "Business, Finance & Leadership",
+                            "paymentMethod": "PayPal"
+                      }
+                },
+                "invoiceNumber": "",
+                "paymentMethod": "PayPal"
+          },
+          {
+                "id": "lec-1795118255896",
+                "title": "SHIFTA #2",
+                "author": "Miles Joyner",
+                "genre": "Crime & Mystery",
+                "publisher": "",
+                "collabType": "Paid",
+                "feeUSD": 75,
+                "receivedUSD": 75,
+                "receivedINR": 6500,
+                "paymentStatus": "Paid",
+                "status": "Review in Progress",
+                "startDate": "2026-07-04",
+                "deadline": "2026-08-10",
+                "reviewSharedDate": "",
+                "publicNote": "",
+                "internalNotes": "",
+                "platforms": {
+                      "instagram": true,
+                      "amazon": false,
+                      "wordpblog": true,
+                      "goodreads": true,
+                      "fable": true,
+                      "storygraph": true,
+                      "bn": true,
+                      "_paymentMeta": {
+                            "receivedUSD": 75,
+                            "receivedINR": 6500,
+                            "invoiceNumber": "INV-2026-105",
+                            "genre": "Crime & Mystery",
+                            "paymentMethod": "PayPal"
+                      }
+                },
+                "invoiceNumber": "INV-2026-105",
+                "paymentMethod": "PayPal"
+          },
+          {
+                "id": "lec-1795117813633",
+                "title": "Change Is Possible",
+                "author": "Michael Maisey",
+                "genre": "Memoir & Autobiography",
+                "publisher": "",
+                "collabType": "Paid",
+                "feeUSD": 60,
+                "receivedUSD": 60,
+                "receivedINR": 4630,
+                "paymentStatus": "Paid",
+                "status": "Review in Progress",
+                "startDate": "2024-12-20",
+                "deadline": "2026-12-17",
+                "reviewSharedDate": "",
+                "publicNote": "",
+                "internalNotes": "",
+                "platforms": {
+                      "instagram": true,
+                      "amazon": true,
+                      "wordpblog": true,
+                      "goodreads": true,
+                      "fable": true,
+                      "storygraph": true,
+                      "bn": true,
+                      "_paymentMeta": {
+                            "receivedUSD": 60,
+                            "receivedINR": 4630,
+                            "invoiceNumber": "",
+                            "genre": "Memoir & Autobiography",
+                            "paymentMethod": "PayPal"
+                      }
+                },
+                "invoiceNumber": "",
+                "paymentMethod": "PayPal"
+          },
+          {
+                "id": "lec-1795117231323",
+                "title": "Palms Up Leadership",
+                "author": "Rich Plumery",
+                "genre": "Business, Finance & Leadership",
+                "publisher": "",
+                "collabType": "Paid",
+                "feeUSD": 100,
+                "receivedUSD": 100,
+                "receivedINR": 7980,
+                "paymentStatus": "Paid",
+                "status": "Confirmed",
+                "startDate": "2025-08-27",
+                "deadline": "2026-12-17",
+                "reviewSharedDate": "",
+                "publicNote": "",
+                "internalNotes": "",
+                "platforms": {
+                      "instagram": true,
+                      "amazon": false,
+                      "wordpblog": true,
+                      "goodreads": true,
+                      "fable": true,
+                      "storygraph": true,
+                      "bn": true,
+                      "_paymentMeta": {
+                            "receivedUSD": 100,
+                            "receivedINR": 7980,
+                            "invoiceNumber": "",
+                            "genre": "Business, Finance & Leadership",
+                            "paymentMethod": "PayPal"
+                      }
+                },
+                "invoiceNumber": "",
+                "paymentMethod": "PayPal"
+          },
+          {
+                "id": "lec-1795116537146",
+                "title": "Never Fire Anyone: A Leader's Guide on how to Lead People not Companies",
+                "author": "Mark Morgenfruh",
+                "genre": "Business, Finance & Leadership",
+                "publisher": "",
+                "collabType": "Paid",
+                "feeUSD": 80,
+                "receivedUSD": 80,
+                "receivedINR": 6455,
+                "paymentStatus": "Paid",
+                "status": "Confirmed",
+                "startDate": "2025-09-25",
+                "deadline": "2026-12-15",
+                "reviewSharedDate": "",
+                "publicNote": "",
+                "internalNotes": "",
+                "platforms": {
+                      "instagram": true,
+                      "amazon": true,
+                      "wordpblog": true,
+                      "goodreads": true,
+                      "fable": true,
+                      "storygraph": true,
+                      "bn": true,
+                      "_paymentMeta": {
+                            "receivedUSD": 80,
+                            "receivedINR": 6455,
+                            "invoiceNumber": "INV-2025-108",
+                            "genre": "Business, Finance & Leadership",
+                            "paymentMethod": "PayPal"
+                      }
+                },
+                "invoiceNumber": "INV-2025-108",
+                "paymentMethod": "PayPal"
+          },
+          {
+                "id": "lec-1795116207084",
+                "title": "A Charge to Keep: Immutable Leadership Lessons from the C-Suite to the Pulpit",
+                "author": "Kevin Taylor",
+                "genre": "Business, Finance & Leadership",
+                "publisher": "",
+                "collabType": "Paid",
+                "feeUSD": 60,
+                "receivedUSD": 60,
+                "receivedINR": 4830,
+                "paymentStatus": "Paid",
+                "status": "Confirmed",
+                "startDate": "2025-10-01",
+                "deadline": "2026-12-10",
+                "reviewSharedDate": "",
+                "publicNote": "",
+                "internalNotes": "",
+                "platforms": {
+                      "instagram": true,
+                      "amazon": true,
+                      "wordpblog": true,
+                      "goodreads": true,
+                      "fable": false,
+                      "storygraph": false,
+                      "bn": false,
+                      "_paymentMeta": {
+                            "receivedUSD": 60,
+                            "receivedINR": 4830,
+                            "invoiceNumber": "",
+                            "genre": "Business, Finance & Leadership",
+                            "paymentMethod": "PayPal"
+                      }
+                },
+                "invoiceNumber": "",
+                "paymentMethod": "PayPal"
+          },
+          {
+                "id": "lec-1795115705470",
+                "title": "The Way From Street Kid to Millionaire",
+                "author": "Igor Fostenko",
+                "genre": "Memoir & Autobiography",
+                "publisher": "",
+                "collabType": "Paid",
+                "feeUSD": 60,
+                "receivedUSD": 60,
+                "receivedINR": 5360,
+                "paymentStatus": "Paid",
+                "status": "Review in Progress",
+                "startDate": "2026-07-30",
+                "deadline": "2026-09-07",
+                "reviewSharedDate": "",
+                "publicNote": "",
+                "internalNotes": "",
+                "platforms": {
+                      "instagram": true,
+                      "amazon": false,
+                      "wordpblog": true,
+                      "goodreads": true,
+                      "fable": false,
+                      "storygraph": true,
+                      "bn": false,
+                      "_paymentMeta": {
+                            "receivedUSD": 60,
+                            "receivedINR": 5360,
+                            "invoiceNumber": "",
+                            "genre": "Memoir & Autobiography",
+                            "paymentMethod": "PayPal"
+                      }
+                },
+                "invoiceNumber": "",
+                "paymentMethod": "PayPal"
+          },
+          {
+                "id": "lec-1795115243869",
+                "title": "5 Lessons for a Happy Life",
+                "author": "Dennis Love",
+                "genre": "Non-Fiction (General)",
+                "publisher": "",
+                "collabType": "Paid",
+                "feeUSD": 43,
+                "receivedUSD": 43,
+                "receivedINR": 3688,
+                "paymentStatus": "Paid",
+                "status": "Reading",
+                "startDate": "2026-11-03",
+                "deadline": "2026-12-20",
+                "reviewSharedDate": "",
+                "publicNote": "",
+                "internalNotes": "",
+                "platforms": {
+                      "instagram": true,
+                      "amazon": true,
+                      "wordpblog": true,
+                      "goodreads": true,
+                      "fable": false,
+                      "storygraph": false,
+                      "bn": false,
+                      "_paymentMeta": {
+                            "receivedUSD": 43,
+                            "receivedINR": 3688,
+                            "invoiceNumber": "",
+                            "genre": "Non-Fiction (General)",
+                            "paymentMethod": "PayPal"
+                      }
+                },
+                "invoiceNumber": "",
+                "paymentMethod": "PayPal"
+          },
+          {
+                "id": "lec-1795115056132",
+                "title": "Cafe Philosophy",
+                "author": "Mohammad Al-Sadah",
+                "genre": "Philosophy & Society",
+                "publisher": "",
+                "collabType": "Paid",
+                "feeUSD": 65,
+                "receivedUSD": 65,
+                "receivedINR": 5556,
+                "paymentStatus": "Paid",
+                "status": "Reading",
+                "startDate": "2026-10-12",
+                "deadline": "2026-12-20",
+                "reviewSharedDate": "",
+                "publicNote": "",
+                "internalNotes": "",
+                "platforms": {
+                      "instagram": true,
+                      "amazon": true,
+                      "wordpblog": true,
+                      "goodreads": true,
+                      "fable": false,
+                      "storygraph": true,
+                      "bn": false,
+                      "_paymentMeta": {
+                            "receivedUSD": 65,
+                            "receivedINR": 5556,
+                            "invoiceNumber": "",
+                            "genre": "Philosophy & Society",
+                            "paymentMethod": "PayPal"
+                      }
+                },
+                "invoiceNumber": "",
+                "paymentMethod": "PayPal"
+          }
+    ];
 
     const DEFAULT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0DHB1RPlhp46-XCq-AZZ95CBQX3Wi73_JTlZqCihWYmKDO658QE8jE3IvhLVQTCTq0g/exec';
 
@@ -2108,10 +2541,16 @@ Thank you for choosing The Lectorem. Your trust and understanding are appreciate
 
     let projects = [];
     try {
-      projects = JSON.parse(localStorage.getItem('lectorem_projects') || JSON.stringify(DEFAULT_PROJECTS));
-      if (!Array.isArray(projects)) projects = [];
+      const savedProjRaw = localStorage.getItem('lectorem_projects');
+      if (savedProjRaw === null) {
+        projects = JSON.parse(JSON.stringify(DEFAULT_PROJECTS));
+        localStorage.setItem('lectorem_projects', JSON.stringify(projects));
+      } else {
+        projects = JSON.parse(savedProjRaw);
+        if (!Array.isArray(projects)) projects = [];
+      }
     } catch (e) {
-      projects = [];
+      projects = JSON.parse(JSON.stringify(DEFAULT_PROJECTS));
     }
     let pitches = [];
     try {
@@ -4406,6 +4845,45 @@ The Lectorem & Books (@thelectoremandbooks)`;
       };
     }
 
+    function fetchJsonp_(scriptUrl, actionName) {
+      return new Promise((resolve, reject) => {
+        const cbName = '__lectorem_cb_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
+        const sep = scriptUrl.includes('?') ? '&' : '?';
+        const scriptEl = document.createElement('script');
+        let settled = false;
+
+        const timer = setTimeout(() => {
+          if (settled) return;
+          settled = true;
+          cleanup();
+          reject(new Error('JSONP timeout'));
+        }, 12000);
+
+        function cleanup() {
+          clearTimeout(timer);
+          try { delete window[cbName]; } catch (_) { window[cbName] = undefined; }
+          if (scriptEl && scriptEl.parentNode) scriptEl.parentNode.removeChild(scriptEl);
+        }
+
+        window[cbName] = function(payload) {
+          if (settled) return;
+          settled = true;
+          cleanup();
+          resolve(payload);
+        };
+
+        scriptEl.onerror = function() {
+          if (settled) return;
+          settled = true;
+          cleanup();
+          reject(new Error('JSONP script load error'));
+        };
+
+        scriptEl.src = `${scriptUrl}${sep}action=${encodeURIComponent(actionName)}&callback=${cbName}&_ts=${Date.now()}`;
+        document.body.appendChild(scriptEl);
+      });
+    }
+
     async function backupToGoogleDrive(silent = false) {
       const url = (localStorage.getItem('lectorem_script_url') || DEFAULT_SCRIPT_URL).trim();
       if (!url) {
@@ -4413,18 +4891,20 @@ The Lectorem & Books (@thelectoremandbooks)`;
         return false;
       }
       updateDriveSyncStatusUI('Saving backup to Google Drive...', 'syncing');
+      const backupObj = buildFullBackupPayload();
+      const postBody = JSON.stringify({
+        action: 'saveDriveBackup',
+        fileName: 'the_lectorem_studio_backup.json',
+        backup: backupObj
+      });
+
       try {
-        const backupObj = buildFullBackupPayload();
         const res = await fetch(url, {
           method: 'POST',
           mode: 'cors',
           redirect: 'follow',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({
-            action: 'saveDriveBackup',
-            fileName: 'the_lectorem_studio_backup.json',
-            backup: backupObj
-          })
+          body: postBody
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const rawText = await res.text();
@@ -4449,11 +4929,31 @@ The Lectorem & Books (@thelectoremandbooks)`;
         }
         return true;
       } catch (err) {
-        updateDriveSyncStatusUI('Drive backup failed: ' + (err.message || 'Check Code.gs deployment'), 'error');
-        if (!silent) {
-          alert('Google Drive Backup Error: ' + (err.message || err) + '\n\nMake sure you updated Code.gs in Google Apps Script with the Drive backup handler and deployed a New Version.');
+        // Fallback when browser/proxy blocks CORS response reading on Apps Script POST redirect
+        try {
+          await fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            redirect: 'follow',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: postBody
+          });
+          const timeLabel = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          updateDriveSyncStatusUI(
+            `Backup sent to Google Drive (${projects.length} projects, ${pitches.length} pitches) at ${timeLabel}`,
+            'ok'
+          );
+          if (!silent) {
+            alert(`Backup request sent to Google Drive (the_lectorem_studio_backup.json)!\n\nProjects: ${projects.length}\nPitches: ${pitches.length}\n\nTip: Click "Restore from Google Drive" on any other device to load your synced data.`);
+          }
+          return true;
+        } catch (errNoCors) {
+          updateDriveSyncStatusUI('Drive backup failed: ' + (err.message || 'Check connection'), 'error');
+          if (!silent) {
+            alert('Google Drive Backup Error: ' + (err.message || errNoCors.message || err));
+          }
+          return false;
         }
-        return false;
       }
     }
 
@@ -4464,26 +4964,11 @@ The Lectorem & Books (@thelectoremandbooks)`;
         return false;
       }
       updateDriveSyncStatusUI('Checking Google Drive backup...', 'syncing');
-      try {
-        const sep = url.includes('?') ? '&' : '?';
-        const res = await fetch(`${url}${sep}action=loadDriveBackup&_ts=${Date.now()}`, {
-          method: 'GET',
-          mode: 'cors',
-          redirect: 'follow'
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const rawText = await res.text();
-        let data;
-        try {
-          data = JSON.parse(rawText);
-        } catch (parseErr) {
-          throw new Error('Non-JSON response from Apps Script.');
-        }
 
+      function applyRestoredData(data) {
         if (!data || data.ok === false) {
           throw new Error((data && data.error) || 'No Drive backup found yet.');
         }
-
         const backup = data.backup || data;
         const incomingProjects = Array.isArray(backup.projects) ? backup.projects : [];
         const incomingPitches = Array.isArray(backup.pitches) ? backup.pitches : null;
@@ -4520,13 +5005,36 @@ The Lectorem & Books (@thelectoremandbooks)`;
           alert(`Restored ${projects.length} projects and ${pitches.length} pitches from Google Drive!`);
         }
         return true;
-      } catch (err) {
-        isRestoringFromCloud = false;
-        updateDriveSyncStatusUI('Drive check skipped (' + (err.message || 'offline') + ')', 'error');
-        if (!silent) {
-          alert('Restore from Google Drive Error: ' + (err.message || err));
+      }
+
+      try {
+        const sep = url.includes('?') ? '&' : '?';
+        const res = await fetch(`${url}${sep}action=loadDriveBackup&_ts=${Date.now()}`, {
+          method: 'GET',
+          mode: 'cors',
+          redirect: 'follow'
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const rawText = await res.text();
+        let data;
+        try {
+          data = JSON.parse(rawText);
+        } catch (parseErr) {
+          throw new Error('Non-JSON response from Apps Script.');
         }
-        return false;
+        return applyRestoredData(data);
+      } catch (err) {
+        try {
+          const jsonpData = await fetchJsonp_(url, 'loadDriveBackup');
+          return applyRestoredData(jsonpData);
+        } catch (jsonpErr) {
+          isRestoringFromCloud = false;
+          updateDriveSyncStatusUI('Drive check skipped (' + (err.message || 'offline') + ')', 'error');
+          if (!silent) {
+            alert('Restore from Google Drive Error: ' + (err.message || err));
+          }
+          return false;
+        }
       }
     }
 
