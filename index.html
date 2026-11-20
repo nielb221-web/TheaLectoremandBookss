@@ -2053,7 +2053,7 @@
 
     const DEFAULT_PROJECTS = [];
 
-    const DEFAULT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwBcwIo55bOWfr8PHkDlTFCXF0AuNItmMdunio-s5X4V8m_uG8iE4njAcJ1IiRwJkwEmA/exec';
+    const DEFAULT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0DHB1RPlhp46-XCq-AZZ95CBQX3Wi73_JTlZqCihWYmKDO658QE8jE3IvhLVQTCTq0g/exec';
 
     // Comprehensive Scrollable List of All Major Book Genres
     const MAJOR_GENRES = [
@@ -2297,7 +2297,7 @@ Thank you for choosing The Lectorem. Your trust and understanding are appreciate
 
     window.addEventListener('DOMContentLoaded', () => {
       const currentUrl = (localStorage.getItem('lectorem_script_url') || '').trim();
-      if (!currentUrl || currentUrl.includes('AKfycbyPbcRjq8v3St6KeXIZ5YMF0Tu8JOKgd8vcVcMugSSJjrqXdJPddTOw54wbwlpuyT0V') || currentUrl.includes('AKfycbzKj-LazHJt4vk0Bt-sx3ezCu9H3XJ2WiiwHKI5XsX04iW-pRr0xqPFgZVZHHJORw9N')) {
+      if (!currentUrl || currentUrl.includes('AKfycbwBcwIo55bOWfr8PHkDlTFCXF0AuNItmMdunio-s5X4V8m_uG8iE4njAcJ1IiRwJkwEmA') || currentUrl.includes('AKfycbyPbcRjq8v3St6KeXIZ5YMF0Tu8JOKgd8vcVcMugSSJjrqXdJPddTOw54wbwlpuyT0V') || currentUrl.includes('AKfycbzKj-LazHJt4vk0Bt-sx3ezCu9H3XJ2WiiwHKI5XsX04iW-pRr0xqPFgZVZHHJORw9N')) {
         localStorage.setItem('lectorem_script_url', DEFAULT_SCRIPT_URL);
       }
       populateGenreDropdowns();
