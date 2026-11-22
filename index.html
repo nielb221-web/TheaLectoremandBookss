@@ -144,6 +144,52 @@
       #invoicePrintableArea, #invoicePrintableArea * { visibility: visible; }
       #invoicePrintableArea { position: fixed; left: 0; top: 0; width: 100%; box-shadow: none !important; border: none !important; }
     }
+
+    /* Dark Mode Theme Overrides (Non-destructive toggle via html.dark) */
+    html.dark body {
+      background-color: #11161C !important;
+      color: #EFECE6 !important;
+    }
+    html.dark .bg-warmIvory {
+      background-color: #11161C !important;
+    }
+    html.dark .bg-pureWhite {
+      background-color: #19212B !important;
+      color: #EFECE6 !important;
+    }
+    html.dark .bg-warmIvory\/50 {
+      background-color: rgba(25, 33, 43, 0.75) !important;
+    }
+    html.dark .border-borderCream {
+      border-color: #2B3645 !important;
+    }
+    html.dark .text-midnight {
+      color: #F5F1E9 !important;
+    }
+    html.dark .text-slateDark {
+      color: #A7B3C0 !important;
+    }
+    html.dark .custom-scrollbar::-webkit-scrollbar-track {
+      background: #11161C;
+    }
+    html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #8D6846;
+    }
+    html.dark input:not([type="checkbox"]):not([type="radio"]),
+    html.dark select,
+    html.dark textarea {
+      background-color: #131A22 !important;
+      color: #EFECE6 !important;
+      border-color: #2E3A4A !important;
+    }
+    html.dark table th,
+    html.dark thead {
+      background-color: #151C25 !important;
+      color: #D9D2C5 !important;
+    }
+    html.dark table tr {
+      border-color: #263140 !important;
+    }
   </style>
 </head>
 <body class="h-full antialiased flex flex-col selection:bg-mutedBrass selection:text-white">
@@ -344,6 +390,11 @@
         <button onclick="toggleIdentityPrivacy()" id="topBtnIdentityPrivacy" class="px-2.5 sm:px-3 py-2 rounded-xl bg-pureWhite/10 hover:bg-pureWhite/20 border border-pureWhite/15 text-warmIvory text-xs font-semibold transition flex items-center gap-1.5" title="Privacy Toggle: Hide or Show All Book Titles & Author Names (****)">
           <i data-lucide="eye" id="topIdentityEyeIcon" class="w-4 h-4 text-sageGreen"></i>
           <span class="hidden sm:inline" id="topIdentityEyeLabel">Books & Authors</span>
+        </button>
+
+        <button type="button" id="themeToggleBtn" onclick="toggleDarkMode()" title="Toggle Dark Mode / Light Mode" aria-label="Toggle Dark Mode or Light Mode" class="px-2.5 sm:px-3 py-2 rounded-xl bg-pureWhite/10 hover:bg-pureWhite/20 border border-pureWhite/15 text-warmIvory text-xs font-semibold transition flex items-center gap-1.5">
+          <i data-lucide="moon" id="themeToggleIcon" class="w-4 h-4 text-mutedBrass"></i>
+          <span class="hidden sm:inline" id="themeToggleLabel">Dark Mode</span>
         </button>
 
         <button onclick="openNewPitchModal()" class="px-2.5 sm:px-3 py-2 bg-sageGreen text-pureWhite text-xs font-semibold rounded-xl hover:bg-sageGreen/90 transition flex items-center gap-1.5 shadow" title="Add Inbound Query, Sent Pitch, or Follow-Up">
@@ -2574,6 +2625,42 @@ Thank you for choosing The Lectorem. Your trust and understanding are appreciate
     // Wise-Style Privacy Masking State (true = hidden behind *****, false = open/visible)
     let hideMoney = localStorage.getItem('lectorem_hide_money') === 'true';
     let hideIdentity = localStorage.getItem('lectorem_hide_identity') === 'true';
+    let isDarkMode = localStorage.getItem('lectorem_dark_mode') === 'true';
+
+    function applyDarkMode(enabled) {
+      isDarkMode = Boolean(enabled);
+      localStorage.setItem('lectorem_dark_mode', String(isDarkMode));
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      updateDarkModeToggleUI();
+    }
+
+    function toggleDarkMode() {
+      applyDarkMode(!isDarkMode);
+    }
+
+    function updateDarkModeToggleUI() {
+      const iconEl = document.getElementById('themeToggleIcon');
+      const labelEl = document.getElementById('themeToggleLabel');
+      const btnEl = document.getElementById('themeToggleBtn');
+      if (iconEl) {
+        iconEl.setAttribute('data-lucide', isDarkMode ? 'sun' : 'moon');
+      }
+      if (labelEl) {
+        labelEl.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+      }
+      if (btnEl) {
+        btnEl.setAttribute('title', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+      }
+      try {
+        if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+          lucide.createIcons();
+        }
+      } catch (err) {}
+    }
 
     function escapeHtml(str) {
       return String(str)
@@ -2739,6 +2826,7 @@ Thank you for choosing The Lectorem. Your trust and understanding are appreciate
       if (!currentUrl || currentUrl.includes('AKfycbwBcwIo55bOWfr8PHkDlTFCXF0AuNItmMdunio-s5X4V8m_uG8iE4njAcJ1IiRwJkwEmA') || currentUrl.includes('AKfycbyPbcRjq8v3St6KeXIZ5YMF0Tu8JOKgd8vcVcMugSSJjrqXdJPddTOw54wbwlpuyT0V') || currentUrl.includes('AKfycbzKj-LazHJt4vk0Bt-sx3ezCu9H3XJ2WiiwHKI5XsX04iW-pRr0xqPFgZVZHHJORw9N')) {
         localStorage.setItem('lectorem_script_url', DEFAULT_SCRIPT_URL);
       }
+      applyDarkMode(isDarkMode);
       populateGenreDropdowns();
       updatePrivacyIcons();
       checkSessionOnLoad();
